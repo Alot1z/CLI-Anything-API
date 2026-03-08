@@ -122,8 +122,9 @@ That's it. The plugin is now available in your Claude Code session.
 ### Step 3: Build a CLI in One Command
 
 ```bash
+# /cli-anything <software-path-or-repo>
 # Generate a complete CLI for GIMP (all 7 phases)
-/cli-anything gimp
+/cli-anything ./gimp
 ```
 
 This runs the full pipeline:
