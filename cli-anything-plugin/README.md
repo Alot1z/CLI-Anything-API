@@ -115,6 +115,28 @@ Validate a CLI harness against HARNESS.md standards and best practices.
 /cli-anything:validate https://github.com/blender/blender
 ```
 
+### `/cli-anything:list [--path <directory>] [--json]`
+
+List all available CLI-Anything tools, including both installed packages and generated directories.
+
+**Examples:**
+```bash
+# List all tools in current directory
+/cli-anything:list
+
+# List tools with JSON output
+/cli-anything:list --json
+
+# Search a specific directory
+/cli-anything:list --path /projects/my-tools
+```
+
+**Output includes:**
+- Tool name
+- Status (installed/generated)
+- Version (for installed)
+- Source path
+
 ## The cli-anything Methodology
 
 ### Phase 1: Codebase Analysis
