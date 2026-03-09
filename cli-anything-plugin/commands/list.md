@@ -45,15 +45,25 @@ for dist in distributions():
 
 Uses `glob` to find local CLI directories:
 - Pattern: `**/agent-harness/cli_anything/*/__init__.py`
-- Extracts: software name, source path
+- Extracts: software name, version (from setup.py), source path
 - Status: `generated`
 
 ```python
 from pathlib import Path
 import glob
+import re
 
 search_path = args.get("path", ".")
 generated = {}
+
+def extract_version_from_setup(setup_path):
+    """Extract version from setup.py using regex."""
+    try:
+        content = Path(setup_path).read_text()
+        match = re.search(r'version\s*=\s*["\']([^"\']+)["\']', content)
+        return match.group(1) if match else None
+    except:
+        return None
 
 pattern = str(Path(search_path) / "**" / "agent-harness" / "cli_anything" / "*" / "__init__.py")
 for init_file in glob.glob(pattern, recursive=True):
@@ -65,9 +75,12 @@ for init_file in glob.glob(pattern, recursive=True):
             # Get agent-harness directory as source
             agent_harness_idx = parts.index("agent-harness") if "agent-harness" in parts else i - 1
             source = str(Path(*parts[:agent_harness_idx + 2]))  # up to agent-harness
+            # Extract version from setup.py (setup.py is in agent-harness/, not cli_anything/)
+            setup_path = Path(*parts[:agent_harness_idx + 1]) / "setup.py"
+            version = extract_version_from_setup(setup_path)
             generated[software] = {
                 "status": "generated",
-                "version": None,
+                "version": version,
                 "executable": None,
                 "source": source
             }
@@ -91,9 +104,9 @@ Name            Status      Version   Source
 ──────────────────────────────────────────────────────────────
 gimp            installed   1.0.0     ./gimp/agent-harness
 blender         installed   1.0.0     ./blender/agent-harness
-inkscape        generated   -         ./inkscape/agent-harness
-audacity        generated   -         ./audacity/agent-harness
-libreoffice     generated   -         ./libreoffice/agent-harness
+inkscape        generated   1.0.0     ./inkscape/agent-harness
+audacity        generated   1.0.0     ./audacity/agent-harness
+libreoffice     generated   1.0.0     ./libreoffice/agent-harness
 ```
 
 ### JSON Format (--json)
@@ -111,7 +124,7 @@ libreoffice     generated   -         ./libreoffice/agent-harness
     {
       "name": "inkscape",
       "status": "generated",
-      "version": null,
+      "version": "1.0.0",
       "executable": null,
       "source": "./inkscape/agent-harness"
     }
