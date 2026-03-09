@@ -410,7 +410,7 @@ cli-anything/
 │   ├── repl_skin.py                      # Unified REPL interface
 │   ├── commands/                         # Plugin command definitions
 │   │   ├── cli-anything.md               # Main build command
-│   │   ├── build.md                      # Phase-by-phase control
+│   │   ├── refine.md                     # Expand existing harness coverage
 │   │   ├── test.md                       # Test runner
 │   │   └── validate.md                   # Standards validation
 │   └── scripts/

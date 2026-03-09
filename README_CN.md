@@ -417,7 +417,7 @@ cli-anything/
 │   ├── repl_skin.py                      # 统一 REPL 界面
 │   ├── commands/                         # 插件命令定义
 │   │   ├── cli-anything.md               # 主构建命令
-│   │   ├── build.md                      # 分阶段控制
+│   │   ├── build.md                      # 扩展已有 harness 覆盖面
 │   │   ├── test.md                       # 测试运行器
 │   │   └── validate.md                   # 标准验证
 │   └── scripts/
