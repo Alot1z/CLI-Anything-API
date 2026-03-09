@@ -73,3 +73,5 @@
 # Step 8: But allow assets images
 !/assets/*.png
 !/assets/*.jpg
+
+assets/gen_typing_gif.py

@@ -1,8 +1,4 @@
-<div align="center">
-<img src="assets/icon.png" alt="CLI-Anything" width="250">
-</div>
-
-<h1 align="center">CLI-Anything: Making ALL Software Agent-Native</h1>
+<h1 align="center"><img src="assets/icon.png" alt="" width="64" style="vertical-align: middle;">&nbsp; CLI-Anything: Making ALL Software Agent-Native</h1>
 
 <p align="center">
   <strong>Today's Software Serves Humans👨‍💻. Tomorrow's Users will be Agents🤖.<br>
@@ -26,9 +22,11 @@ CLI-Anything: Bridging the Gap Between AI Agents and the World's Software</stron
 <a href="https://github.com/HKUDS/.github/blob/main/profile/README.md"><img src="https://img.shields.io/badge/WeChat-Group-C5EAB4?style=flat&logo=wechat&logoColor=white" alt="WeChat"></a>
 </p>
 
-**One Command Line**: Make any software agent-ready for OpenClaw, nanobot, Cursor, Claude Code, etc.
+**One Command Line**: Make any software agent-ready for OpenClaw, nanobot, Cursor, Claude Code, etc.&nbsp;&nbsp;[**中文文档**](README_CN.md)
 
-<br>
+<p align="center">
+  <img src="assets/cli-typing.gif" alt="CLI-Anything typing demo" width="800">
+</p>
 
 <p align="center">
   <img src="assets/teaser.png" alt="CLI-Anything Teaser" width="800">
@@ -51,46 +49,6 @@ CLI is the universal interface for both humans and AI agents:
 • **Agent-First Design** - Structured JSON output eliminates parsing complexity
 
 • **Deterministic & Reliable** - Consistent results enable predictable agent behavior
-
-## 💡 CLI-Anything's Vision: Building Agent-Native Software
-
-• 🌐 **Universal Access** - Every software becomes instantly agent-controllable through structured CLI.
-
-• 🔗 **Seamless Integration** - Agents control any application without APIs, GUI, rebuilding or complex wrappers.
-
-• 🚀 **Future-Ready Ecosystem** - Transform human-designed software into agent-native tools with one command.
-
----
-
-## 🔧 When to Use CLI-Anything
-
-| Category | How to be Agent-native | Notable Examples |
-|----------|----------------------|----------|
-| **📂 GitHub Repositories** | Transform any open-source project into agent-controllable tools through automatic CLI generation | VSCodium, WordPress, Calibre, Zotero, Joplin, Logseq, Penpot, Super Productivity |
-| **🤖 AI/ML Platforms** | Automate model training, inference pipelines, and hyperparameter tuning through structured commands | Stable Diffusion WebUI, ComfyUI, InvokeAI, Text-generation-webui, Open WebUI, Fooocus, Kohya_ss, AnythingLLM, SillyTavern |
-| **📊 Data & Analytics** | Enable programmatic data processing, visualization, and statistical analysis workflows | JupyterLab, Apache Superset, Metabase, Redash, DBeaver, KNIME, Orange, OpenSearch Dashboards, Lightdash |
-| **💻 Development Tools** | Streamline code editing, building, testing, and deployment processes via command interfaces | Jenkins, Gitea, Hoppscotch, Portainer, pgAdmin, SonarQube, ArgoCD, OpenLens, Insomnia, Beekeeper Studio |
-| **🎨 Creative & Media** | Control content creation, editing, and rendering workflows programmatically | Blender, GIMP, OBS Studio, Audacity, Krita, Kdenlive, Shotcut, Inkscape, Darktable, LMMS, Ardour |
-| **🔬 Scientific Computing** | Automate research workflows, simulations, and complex calculations | ImageJ, FreeCAD, QGIS, ParaView, Gephi, LibreCAD, Stellarium, KiCad, JASP, Jamovi |
-| **🏢 Enterprise & Office** | Convert business applications and productivity tools into agent-accessible systems | NextCloud, GitLab, Grafana, Mattermost, LibreOffice, AppFlowy, NocoDB, Odoo (Community), Plane, ERPNext |
----
-
-## CLI-Anything's Key Features
-
-### The Agent-Software Gap
-AI agents are great at reasoning but terrible at using real professional software. Current solutions are fragile UI automation, limited APIs, or dumbed-down reimplementations that miss 90% of functionality.
-
-**CLI-Anything's Solution**: Transform any professional software into agent-native tools without losing capabilities.
-
-| **Current Pain Point** | **CLI-Anything's Fix** |
-|----------|----------------------|
-| 🤖 "AI can't use real tools" | Direct integration with actual software backends (Blender, LibreOffice, FFmpeg) — full professional capabilities, zero compromises |
-| 💸 "UI automation breaks constantly" | No screenshots, no clicking, no RPA fragility. Pure command-line reliability with structured interfaces |
-| 📊 "Agents need structured data" | Built-in JSON output for seamless agent consumption + human-readable formats for debugging |
-| 🔧 "Custom integrations are expensive" | One Claude plugin auto-generates CLIs for ANY codebase through proven 7-phase pipeline |
-| ⚡ "Prototype vs Production gap" | 1,298+ tests with real software validation. Battle-tested across 8 major applications |
-
----
 
 ## 🚀 Quick Start
 
@@ -167,6 +125,76 @@ cp -r CLI-Anything/cli-anything-plugin ~/.claude/plugins/cli-anything
 ```
 
 </details>
+
+---
+
+## 💡 CLI-Anything's Vision: Building Agent-Native Software
+
+• 🌐 **Universal Access** - Every software becomes instantly agent-controllable through structured CLI.
+
+• 🔗 **Seamless Integration** - Agents control any application without APIs, GUI, rebuilding or complex wrappers.
+
+• 🚀 **Future-Ready Ecosystem** - Transform human-designed software into agent-native tools with one command.
+
+---
+
+## 🔧 When to Use CLI-Anything
+
+| Category | How to be Agent-native | Notable Examples |
+|----------|----------------------|----------|
+| **📂 GitHub Repositories** | Transform any open-source project into agent-controllable tools through automatic CLI generation | VSCodium, WordPress, Calibre, Zotero, Joplin, Logseq, Penpot, Super Productivity |
+| **🤖 AI/ML Platforms** | Automate model training, inference pipelines, and hyperparameter tuning through structured commands | Stable Diffusion WebUI, ComfyUI, InvokeAI, Text-generation-webui, Open WebUI, Fooocus, Kohya_ss, AnythingLLM, SillyTavern |
+| **📊 Data & Analytics** | Enable programmatic data processing, visualization, and statistical analysis workflows | JupyterLab, Apache Superset, Metabase, Redash, DBeaver, KNIME, Orange, OpenSearch Dashboards, Lightdash |
+| **💻 Development Tools** | Streamline code editing, building, testing, and deployment processes via command interfaces | Jenkins, Gitea, Hoppscotch, Portainer, pgAdmin, SonarQube, ArgoCD, OpenLens, Insomnia, Beekeeper Studio |
+| **🎨 Creative & Media** | Control content creation, editing, and rendering workflows programmatically | Blender, GIMP, OBS Studio, Audacity, Krita, Kdenlive, Shotcut, Inkscape, Darktable, LMMS, Ardour |
+| **🔬 Scientific Computing** | Automate research workflows, simulations, and complex calculations | ImageJ, FreeCAD, QGIS, ParaView, Gephi, LibreCAD, Stellarium, KiCad, JASP, Jamovi |
+| **🏢 Enterprise & Office** | Convert business applications and productivity tools into agent-accessible systems | NextCloud, GitLab, Grafana, Mattermost, LibreOffice, AppFlowy, NocoDB, Odoo (Community), Plane, ERPNext |
+---
+
+## CLI-Anything's Key Features
+
+### The Agent-Software Gap
+AI agents are great at reasoning but terrible at using real professional software. Current solutions are fragile UI automation, limited APIs, or dumbed-down reimplementations that miss 90% of functionality.
+
+**CLI-Anything's Solution**: Transform any professional software into agent-native tools without losing capabilities.
+
+| **Current Pain Point** | **CLI-Anything's Fix** |
+|----------|----------------------|
+| 🤖 "AI can't use real tools" | Direct integration with actual software backends (Blender, LibreOffice, FFmpeg) — full professional capabilities, zero compromises |
+| 💸 "UI automation breaks constantly" | No screenshots, no clicking, no RPA fragility. Pure command-line reliability with structured interfaces |
+| 📊 "Agents need structured data" | Built-in JSON output for seamless agent consumption + human-readable formats for debugging |
+| 🔧 "Custom integrations are expensive" | One Claude plugin auto-generates CLIs for ANY codebase through proven 7-phase pipeline |
+| ⚡ "Prototype vs Production gap" | 1,298+ tests with real software validation. Battle-tested across 8 major applications |
+
+---
+
+## 🎯 What Can You Do with CLI-Anything?
+
+<table>
+<tr>
+<td width="33%">
+
+### 🛠️ Let Agents Take Your Workflows
+
+Professional or everyday — just throw the codebase at `/cli-anything`. GIMP, Blender, Shotcut for creative work. LibreOffice, OBS Studio for daily tasks. Don't have the source? Find an open-source alternative and throw *that* in. You'll instantly get a full CLI your agents can use.
+
+</td>
+<td width="33%">
+
+### 🔗 Unify Scattered APIs into One CLI
+
+Tired of juggling fragmented web service APIs? Feed the docs or SDK manuscripts to `/cli-anything` and your agents get a **powerful, stateful CLI** that wraps those individual endpoints into coherent command groups. One tool instead of dozens of raw API calls — stronger capabilities while saving tokens.
+
+</td>
+<td width="33%">
+
+### 🚀 Replace or Supercharge GUI Agents
+
+CLI-Anything can flat-out **replace GUI-based agent approaches** — no more screenshots, no brittle pixel-clicking. But here's the fun part: once you `/cli-anything` a GUI software, you can **synthesize agent tasks, evaluators, and benchmarks** entirely via code and terminal — fully automated, iteratively refinable, massively more efficient.
+
+</td>
+</tr>
+</table>
 
 ---
 
@@ -558,6 +586,8 @@ We welcome contributions! CLI-Anything is designed to be extensible:
 - [ ] Benchmark suite for agent task completion rates
 - [ ] Community-contributed CLI harnesses for internal/custom software
 - [ ] Integration with additional agent frameworks beyond Claude Code
+- [ ] Support packaging APIs for closed-source software and web services into CLIs
+- [ ] Produce SKILL.md alongside the CLI for agent skill discovery and orchestration
 
 ---
 
