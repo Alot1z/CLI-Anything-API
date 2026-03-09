@@ -7,8 +7,8 @@ CLI-Anything: Bridging the Gap Between AI Agents and the World's Software</stron
 
 <p align="center">
   <a href="#-quick-start"><img src="https://img.shields.io/badge/Quick_Start-5_min-blue?style=for-the-badge" alt="Quick Start"></a>
-  <a href="#-demonstrations"><img src="https://img.shields.io/badge/Demos-8_Apps-green?style=for-the-badge" alt="Demos"></a>
-  <a href="#-test-results"><img src="https://img.shields.io/badge/Tests-1%2C298_Passing-brightgreen?style=for-the-badge" alt="Tests"></a>
+  <a href="#-demonstrations"><img src="https://img.shields.io/badge/Demos-9_Apps-green?style=for-the-badge" alt="Demos"></a>
+  <a href="#-test-results"><img src="https://img.shields.io/badge/Tests-1%2C436_Passing-brightgreen?style=for-the-badge" alt="Tests"></a>
   <a href="LICENSE"><img src="https://img.shields.io/badge/License-MIT-yellow?style=for-the-badge" alt="License"></a>
 </p>
 
@@ -149,6 +149,7 @@ cp -r CLI-Anything/cli-anything-plugin ~/.claude/plugins/cli-anything
 | **🎨 Creative & Media** | Control content creation, editing, and rendering workflows programmatically | Blender, GIMP, OBS Studio, Audacity, Krita, Kdenlive, Shotcut, Inkscape, Darktable, LMMS, Ardour |
 | **🔬 Scientific Computing** | Automate research workflows, simulations, and complex calculations | ImageJ, FreeCAD, QGIS, ParaView, Gephi, LibreCAD, Stellarium, KiCad, JASP, Jamovi |
 | **🏢 Enterprise & Office** | Convert business applications and productivity tools into agent-accessible systems | NextCloud, GitLab, Grafana, Mattermost, LibreOffice, AppFlowy, NocoDB, Odoo (Community), Plane, ERPNext |
+| **📐 Diagramming & Visualization** | Create and manipulate diagrams, flowcharts, architecture diagrams, and visual documentation programmatically | Draw.io (diagrams.net), Mermaid, PlantUML, Excalidraw, yEd |
 | **✨ AI Content Generation** | Generate professional deliverables (slides, docs, diagrams, websites, research reports) through AI-powered cloud APIs | [AnyGen](https://www.anygen.io), Gamma, Beautiful.ai, Tome |
 
 ---
@@ -166,7 +167,7 @@ AI agents are great at reasoning but terrible at using real professional softwar
 | 💸 "UI automation breaks constantly" | No screenshots, no clicking, no RPA fragility. Pure command-line reliability with structured interfaces |
 | 📊 "Agents need structured data" | Built-in JSON output for seamless agent consumption + human-readable formats for debugging |
 | 🔧 "Custom integrations are expensive" | One Claude plugin auto-generates CLIs for ANY codebase through proven 7-phase pipeline |
-| ⚡ "Prototype vs Production gap" | 1,298+ tests with real software validation. Battle-tested across 8 major applications |
+| ⚡ "Prototype vs Production gap" | 1,436+ tests with real software validation. Battle-tested across 9 major applications |
 
 ---
 
@@ -255,7 +256,7 @@ All CLIs organized under cli_anything.* namespace — conflict-free, pip-install
 CLI-Anything works on any software with a codebase — no domain restrictions or architectural limitations.
 
 ### 🏭 Professional-Grade Testing
-Tested across 8 diverse, complex open-source applications spanning creative and productivity domains previously inaccessible to AI agents.
+Tested across 9 diverse, complex open-source applications spanning creative, productivity, and diagramming domains previously inaccessible to AI agents.
 
 ### 🎨 Diverse Domain Coverage
 From creative workflows (image editing, 3D modeling, vector graphics) to production tools (audio, office, live streaming, video editing).
@@ -328,12 +329,19 @@ Each application received complete, production-ready CLI interfaces — not demo
 <td align="center">✅ 154</td>
 </tr>
 <tr>
+<td align="center"><strong>📐 Draw.io</strong></td>
+<td>Diagramming</td>
+<td><code>cli-anything-drawio</code></td>
+<td>mxGraph XML + draw.io CLI</td>
+<td align="center">✅ 138</td>
+</tr>
+<tr>
 <td align="center" colspan="4"><strong>Total</strong></td>
-<td align="center"><strong>✅ 1,298</strong></td>
+<td align="center"><strong>✅ 1,436</strong></td>
 </tr>
 </table>
 
-> **100% pass rate** across all 1,298 tests — 895 unit tests + 403 end-to-end tests.
+> **100% pass rate** across all 1,436 tests — 1,011 unit tests + 425 end-to-end tests.
 
 ---
 
@@ -358,8 +366,9 @@ libreoffice   158 passed  ✅   (89 unit + 69 e2e)
 obs-studio    153 passed  ✅   (116 unit + 37 e2e)
 kdenlive      155 passed  ✅   (111 unit + 44 e2e)
 shotcut       154 passed  ✅   (110 unit + 44 e2e)
+drawio        138 passed  ✅   (116 unit + 22 e2e)
 ──────────────────────────────────────────────────────────────────────────────
-TOTAL        1,298 passed  ✅   100% pass rate
+TOTAL        1,436 passed  ✅   100% pass rate
 ```
 
 ---
@@ -414,7 +423,8 @@ cli-anything/
 ├── 📄 libreoffice/agent-harness/        # LibreOffice CLI (158 tests)
 ├── 📹 obs-studio/agent-harness/         # OBS Studio CLI (153 tests)
 ├── 🎞️ kdenlive/agent-harness/           # Kdenlive CLI (155 tests)
-└── 🎬 shotcut/agent-harness/            # Shotcut CLI (154 tests)
+├── 🎬 shotcut/agent-harness/            # Shotcut CLI (154 tests)
+└── 📐 drawio/agent-harness/             # Draw.io CLI (138 tests)
 ```
 
 Each `agent-harness/` contains an installable Python package under `cli_anything.<software>/` with Click CLI, core modules, utils (including `repl_skin.py` and backend wrapper), and comprehensive tests.
@@ -636,7 +646,7 @@ MIT License — free to use, modify, and distribute.
 
 **CLI-Anything** — *Make any software with a codebase Agent-native.*
 
-<sub>A methodology for the age of AI agents | 8 professional software demos | 1,298 passing tests</sub>
+<sub>A methodology for the age of AI agents | 9 professional software demos | 1,436 passing tests</sub>
 
 <br>
 
