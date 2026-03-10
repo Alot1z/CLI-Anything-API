@@ -5,12 +5,13 @@ List all available CLI-Anything tools (installed and generated).
 ## Usage
 
 ```bash
-/cli-anything:list [--path <directory>] [--json]
+/cli-anything:list [--path <directory>] [--depth <n>] [--json]
 ```
 
 ## Options
 
 - `--path <directory>` - Directory to search for generated CLIs (default: current directory)
+- `--depth <n>` - Maximum recursion depth for scanning (default: unlimited). Use `0` for current directory only, `1` for one level deep, etc.
 - `--json` - Output in JSON format for machine parsing
 
 ## What This Command Does
@@ -44,7 +45,7 @@ for dist in distributions():
 ### 2. Generated CLIs
 
 Uses `glob` to find local CLI directories:
-- Pattern: `**/agent-harness/cli_anything/*/__init__.py`
+- Pattern: `**/agent-harness/cli_anything/*/__init__.py` (or depth-limited variant)
 - Extracts: software name, version (from setup.py), source path
 - Status: `generated`
 
@@ -54,6 +55,7 @@ import glob
 import re
 
 search_path = args.get("path", ".")
+max_depth = args.get("depth", None)  # None means unlimited
 generated = {}
 
 def extract_version_from_setup(setup_path):
@@ -65,7 +67,21 @@ def extract_version_from_setup(setup_path):
     except:
         return None
 
-pattern = str(Path(search_path) / "**" / "agent-harness" / "cli_anything" / "*" / "__init__.py")
+def build_glob_pattern(base_path, depth):
+    """Build glob pattern with optional depth limit."""
+    # The target path structure is: base/*/agent-harness/cli_anything/*/__init__.py
+    # We need at least 4 levels to reach agent-harness/cli_anything/software/__init__.py
+    if depth is None:
+        # Unlimited depth: use **
+        return str(Path(base_path) / "**" / "agent-harness" / "cli_anything" / "*" / "__init__.py")
+    else:
+        # Limited depth: use specific number of * levels
+        # depth=0 means only current dir, depth=1 means one level subdirs, etc.
+        # We need enough depth to find agent-harness/cli_anything/software/__init__.py
+        depth_pattern = "/".join(["*"] * (depth + 1)) if depth > 0 else "*"
+        return str(Path(base_path) / depth_pattern / "agent-harness" / "cli_anything" / "*" / "__init__.py")
+
+pattern = build_glob_pattern(search_path, max_depth)
 for init_file in glob.glob(pattern, recursive=True):
     parts = Path(init_file).parts
     # Find cli_anything/<software> pattern
@@ -149,6 +165,7 @@ When this command is invoked, the agent should:
 
 1. **Parse arguments**
    - Extract `--path` value (default: `.`)
+   - Extract `--depth` value (default: `None` for unlimited recursion)
    - Extract `--json` flag (default: false)
 
 2. **Validate path exists**
@@ -160,7 +177,8 @@ When this command is invoked, the agent should:
    - Extract name, version, find executable path
 
 4. **Scan generated CLIs**
-   - Use `glob.glob(pattern, recursive=True)` with depth limit
+   - Build glob pattern based on depth parameter
+   - Use `glob.glob(pattern, recursive=True)`
    - Parse directory structure to extract software name
    - Calculate relative path from current directory
 
@@ -180,21 +198,29 @@ When this command is invoked, the agent should:
 ## Examples
 
 ```bash
-# List all tools in current directory
+# List all tools in current directory (unlimited depth)
 /cli-anything:list
+
+# List tools with depth limit (only scan 2 levels deep)
+/cli-anything:list --depth 2
+
+# List tools in current directory only (no recursion)
+/cli-anything:list --depth 0
 
 # List tools with JSON output
 /cli-anything:list --json
 
-# Search a specific directory
-/cli-anything:list --path /projects/my-tools
+# Search a specific directory with depth limit
+/cli-anything:list --path /projects/my-tools --depth 3
 
 # Combined
-/cli-anything:list --path ./output --json
+/cli-anything:list --path ./output --depth 2 --json
 ```
 
 ## Notes
 
-- Search depth is limited by glob pattern structure (about 5 levels)
+- `--depth` controls how many directory levels to descend from the search path
+- Default depth is unlimited (`**` glob pattern)
+- CLI-Anything tools typically need at least 3-4 levels to find `agent-harness/cli_anything/software/__init__.py`
 - Relative paths are preferred for readability
 - The command should work without any external dependencies beyond Python stdlib
