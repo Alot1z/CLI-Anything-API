@@ -115,26 +115,34 @@ Validate a CLI harness against HARNESS.md standards and best practices.
 /cli-anything:validate https://github.com/blender/blender
 ```
 
-### `/cli-anything:list [--path <directory>] [--json]`
+### `/cli-anything:list [--path <directory>] [--depth <n>] [--json]`
 
 List all available CLI-Anything tools, including both installed packages and generated directories.
 
+**Options:**
+- `--path <directory>` - Directory to search (default: current directory)
+- `--depth <n>` - Maximum recursion depth (default: unlimited). Scans depths 0 through N.
+- `--json` - Output in JSON format
+
 **Examples:**
 ```bash
-# List all tools in current directory
+# List all tools in current directory (unlimited depth)
 /cli-anything:list
+
+# List tools with depth limit
+/cli-anything:list --depth 2
 
 # List tools with JSON output
 /cli-anything:list --json
 
-# Search a specific directory
-/cli-anything:list --path /projects/my-tools
+# Search a specific directory with depth limit
+/cli-anything:list --path /projects/my-tools --depth 3
 ```
 
 **Output includes:**
 - Tool name
 - Status (installed/generated)
-- Version (for installed)
+- Version
 - Source path
 
 ## The cli-anything Methodology
