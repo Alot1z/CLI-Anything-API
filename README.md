@@ -622,7 +622,6 @@ Each generated harness also includes:
 
 If CLI-Anything helps make your software Agent-native, give us a star! ⭐
 
-<!-- Uncomment when published:
 <div align="center">
   <a href="https://star-history.com/#HKUDS/CLI-Anything&Date">
     <picture>
@@ -632,7 +631,6 @@ If CLI-Anything helps make your software Agent-native, give us a star! ⭐
     </picture>
   </a>
 </div>
--->
 
 ---
 
