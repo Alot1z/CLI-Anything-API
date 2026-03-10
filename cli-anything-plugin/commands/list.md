@@ -67,22 +67,33 @@ def extract_version_from_setup(setup_path):
     except:
         return None
 
-def build_glob_pattern(base_path, depth):
-    """Build glob pattern with optional depth limit."""
-    # The target path structure is: base/*/agent-harness/cli_anything/*/__init__.py
-    # We need at least 4 levels to reach agent-harness/cli_anything/software/__init__.py
+def build_glob_patterns(base_path, depth):
+    """Build list of glob patterns for depths 0 through max_depth.
+
+    Returns multiple patterns so that --depth 2 finds tools at depth 0, 1, AND 2.
+    """
+    base = Path(base_path)
+    suffix = "agent-harness/cli_anything/*/__init__.py"
+
     if depth is None:
         # Unlimited depth: use **
-        return str(Path(base_path) / "**" / "agent-harness" / "cli_anything" / "*" / "__init__.py")
-    else:
-        # Limited depth: use specific number of * levels
-        # depth=0 means only current dir, depth=1 means one level subdirs, etc.
-        # We need enough depth to find agent-harness/cli_anything/software/__init__.py
-        depth_pattern = "/".join(["*"] * (depth + 1)) if depth > 0 else "*"
-        return str(Path(base_path) / depth_pattern / "agent-harness" / "cli_anything" / "*" / "__init__.py")
+        return [str(base / "**" / suffix)]
 
-pattern = build_glob_pattern(search_path, max_depth)
-for init_file in glob.glob(pattern, recursive=True):
+    # Generate patterns for all depths from 0 to max_depth
+    patterns = []
+    for d in range(depth + 1):
+        if d == 0:
+            # depth 0: look in current directory
+            patterns.append(str(base / suffix))
+        else:
+            # depth N: look N levels deep
+            prefix = "/".join(["*"] * d)
+            patterns.append(str(base / prefix / suffix))
+    return patterns
+
+patterns = build_glob_patterns(search_path, max_depth)
+for pattern in patterns:
+    for init_file in glob.glob(pattern, recursive=True):
     parts = Path(init_file).parts
     # Find cli_anything/<software> pattern
     for i, p in enumerate(parts):
