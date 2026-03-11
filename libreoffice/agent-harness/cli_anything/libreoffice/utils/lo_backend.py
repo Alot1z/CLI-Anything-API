@@ -20,29 +20,61 @@ from typing import Optional
 def find_libreoffice() -> str:
     """Find the LibreOffice executable.
 
-    Returns the absolute path to the libreoffice binary.
+    Returns the absolute path to the libreoffice/soffice binary.
+    Searches PATH first, then common installation directories on each platform.
     Raises RuntimeError if not found.
     """
+    # 1) Check PATH
     for name in ("libreoffice", "soffice"):
         path = shutil.which(name)
         if path:
             return path
+
+    # 2) Check common installation paths (Windows)
+    import sys
+    if sys.platform == "win32" or os.name == "nt" or "MSYS" in os.environ.get("MSYSTEM", "") or "msys" in sys.platform or os.path.exists("C:/"):
+        win_candidates = [
+            os.path.join(os.environ.get("PROGRAMFILES", r"C:\Program Files"),
+                         "LibreOffice", "program", "soffice.exe"),
+            os.path.join(os.environ.get("PROGRAMFILES(X86)", r"C:\Program Files (x86)"),
+                         "LibreOffice", "program", "soffice.exe"),
+            r"C:\Program Files\LibreOffice\program\soffice.exe",
+            r"C:\Program Files (x86)\LibreOffice\program\soffice.exe",
+        ]
+        for candidate in win_candidates:
+            if os.path.isfile(candidate):
+                return candidate
+
+    # 3) Check common installation paths (macOS)
+    mac_candidate = "/Applications/LibreOffice.app/Contents/MacOS/soffice"
+    if os.path.isfile(mac_candidate):
+        return mac_candidate
+
     raise RuntimeError(
         "LibreOffice is not installed. Install it with:\n"
-        "  apt install libreoffice        # Debian/Ubuntu\n"
-        "  brew install --cask libreoffice # macOS\n"
-        "  choco install libreoffice       # Windows"
+        "  apt install libreoffice          # Debian/Ubuntu\n"
+        "  brew install --cask libreoffice   # macOS\n"
+        "  winget install TheDocumentFoundation.LibreOffice  # Windows"
     )
 
 
 def get_version() -> str:
     """Get the installed LibreOffice version string."""
     lo = find_libreoffice()
-    result = subprocess.run(
-        [lo, "--version"],
-        capture_output=True, text=True, timeout=10,
-    )
-    return result.stdout.strip()
+    try:
+        result = subprocess.run(
+            [lo, "--headless", "--version"],
+            capture_output=True, text=True, timeout=15,
+        )
+        version = result.stdout.strip()
+        if version:
+            return version
+        # Some Windows builds print to stderr
+        if result.stderr.strip():
+            return result.stderr.strip()
+    except (subprocess.TimeoutExpired, OSError):
+        pass
+    return f"LibreOffice (path: {lo})"
 
 
 def convert(
