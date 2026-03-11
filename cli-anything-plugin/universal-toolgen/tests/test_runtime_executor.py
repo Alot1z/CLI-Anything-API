@@ -1,4 +1,5 @@
 import io
+import socket
 import urllib.error
 
 from cli_anything.universal.runtime_executor import RuntimeExecutor
@@ -96,3 +97,21 @@ def test_execute_http_returns_http_error_payload(monkeypatch):
     assert result["ok"] is False
     assert result["status"] == 404
     assert result["data"]["error"] == "missing"
+
+
+def test_execute_http_timeout_error(monkeypatch):
+    ex = RuntimeExecutor()
+    tool = ToolSchema(
+        name="users.list",
+        description="List users",
+        execution_type=ExecutionType.REST_API,
+        execution_target="https://example.com/users",
+    )
+
+    def raise_timeout(*_args, **_kwargs):
+        raise socket.timeout("timed out")
+
+    monkeypatch.setattr("urllib.request.urlopen", raise_timeout)
+    result = ex.execute(tool, {})
+    assert result["ok"] is False
+    assert result["error"] == "timeout"

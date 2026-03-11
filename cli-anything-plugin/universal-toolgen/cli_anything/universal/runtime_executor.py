@@ -4,6 +4,7 @@ from __future__ import annotations
 
 import json
 import os
+import socket
 import shlex
 import subprocess
 import urllib.error
@@ -96,7 +97,7 @@ class RuntimeExecutor:
             }
         except urllib.error.URLError as exc:
             return {"status": None, "ok": False, "error": str(exc.reason), "data": None}
-        except TimeoutError:
+        except (TimeoutError, socket.timeout):
             return {"status": None, "ok": False, "error": "timeout", "data": None}
 
     @staticmethod

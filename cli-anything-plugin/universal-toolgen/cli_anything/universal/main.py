@@ -42,8 +42,16 @@ def exec_openapi_tool(
     if tool_name not in tools:
         raise typer.BadParameter(f"Unknown tool '{tool_name}'.")
 
+    try:
+        parsed_params = json.loads(params)
+    except json.JSONDecodeError as exc:
+        raise typer.BadParameter(f"Invalid JSON for --params: {exc}") from exc
+
+    if not isinstance(parsed_params, dict):
+        raise typer.BadParameter("--params must decode to a JSON object.")
+
     runtime = RuntimeExecutor()
-    result = runtime.execute(tools[tool_name], json.loads(params))
+    result = runtime.execute(tools[tool_name], parsed_params)
     typer.echo(json.dumps(result, indent=2, default=str))
 
 
