@@ -29,6 +29,7 @@
 !/shotcut/
 !/anygen/
 !/zoom/
+!/drawio/
 
 # Step 5: Inside each software dir, ignore everything (including dotfiles)
 /gimp/*
@@ -51,6 +52,8 @@
 /anygen/.*
 /zoom/*
 /zoom/.*
+/drawio/*
+/drawio/.*
 
 # Step 6: ...except agent-harness/
 !/gimp/agent-harness/
@@ -63,6 +66,7 @@
 !/shotcut/agent-harness/
 !/anygen/agent-harness/
 !/zoom/agent-harness/
+!/drawio/agent-harness/
 
 # Step 7: Ignore build artifacts within allowed dirs
 **/__pycache__/
@@ -77,6 +81,7 @@
 **/*.blend
 **/*.xcf
 **/*.mlt
+**/*.drawio
 
 # Step 8: But allow assets images
 !/assets/*.png

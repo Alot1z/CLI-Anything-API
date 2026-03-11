@@ -8,7 +8,7 @@ CLI-Anything: Bridging the Gap Between AI Agents and the World's Software</stron
 <p align="center">
   <a href="#-quick-start"><img src="https://img.shields.io/badge/Quick_Start-5_min-blue?style=for-the-badge" alt="Quick Start"></a>
   <a href="#-demonstrations"><img src="https://img.shields.io/badge/Demos-9_Apps-green?style=for-the-badge" alt="Demos"></a>
-  <a href="#-test-results"><img src="https://img.shields.io/badge/Tests-1%2C321_Passing-brightgreen?style=for-the-badge" alt="Tests"></a>
+  <a href="#-test-results"><img src="https://img.shields.io/badge/Tests-1%2C458_Passing-brightgreen?style=for-the-badge" alt="Tests"></a>
   <a href="LICENSE"><img src="https://img.shields.io/badge/License-MIT-yellow?style=for-the-badge" alt="License"></a>
 </p>
 
@@ -150,6 +150,7 @@ cp -r CLI-Anything/cli-anything-plugin ~/.claude/plugins/cli-anything
 | **🔬 Scientific Computing** | Automate research workflows, simulations, and complex calculations | ImageJ, FreeCAD, QGIS, ParaView, Gephi, LibreCAD, Stellarium, KiCad, JASP, Jamovi |
 | **🏢 Enterprise & Office** | Convert business applications and productivity tools into agent-accessible systems | NextCloud, GitLab, Grafana, Mattermost, LibreOffice, AppFlowy, NocoDB, Odoo (Community), Plane, ERPNext |
 | **📞 Communication & Collaboration** | Automate meeting scheduling, participant management, recording retrieval, and reporting through structured CLI | Zoom, Jitsi Meet, BigBlueButton, Mattermost |
+| **📐 Diagramming & Visualization** | Create and manipulate diagrams, flowcharts, architecture diagrams, and visual documentation programmatically | Draw.io (diagrams.net), Mermaid, PlantUML, Excalidraw, yEd |
 | **✨ AI Content Generation** | Generate professional deliverables (slides, docs, diagrams, websites, research reports) through AI-powered cloud APIs | [AnyGen](https://www.anygen.io), Gamma, Beautiful.ai, Tome |
 
 ---
@@ -167,7 +168,7 @@ AI agents are great at reasoning but terrible at using real professional softwar
 | 💸 "UI automation breaks constantly" | No screenshots, no clicking, no RPA fragility. Pure command-line reliability with structured interfaces |
 | 📊 "Agents need structured data" | Built-in JSON output for seamless agent consumption + human-readable formats for debugging |
 | 🔧 "Custom integrations are expensive" | One Claude plugin auto-generates CLIs for ANY codebase through proven 7-phase pipeline |
-| ⚡ "Prototype vs Production gap" | 1,320+ tests with real software validation. Battle-tested across 9 major applications |
+| ⚡ "Prototype vs Production gap" | 1,458+ tests with real software validation. Battle-tested across 10 major applications |
 
 ---
 
@@ -256,7 +257,7 @@ All CLIs organized under cli_anything.* namespace — conflict-free, pip-install
 CLI-Anything works on any software with a codebase — no domain restrictions or architectural limitations.
 
 ### 🏭 Professional-Grade Testing
-Tested across 9 diverse, complex applications spanning creative, productivity, and communication domains previously inaccessible to AI agents.
+Tested across 10 diverse, complex applications spanning creative, productivity, communication, and diagramming domains previously inaccessible to AI agents.
 
 ### 🎨 Diverse Domain Coverage
 From creative workflows (image editing, 3D modeling, vector graphics) to production tools (audio, office, live streaming, video editing).
@@ -336,12 +337,19 @@ Each application received complete, production-ready CLI interfaces — not demo
 <td align="center">✅ 22</td>
 </tr>
 <tr>
+<td align="center"><strong>📐 Draw.io</strong></td>
+<td>Diagramming</td>
+<td><code>cli-anything-drawio</code></td>
+<td>mxGraph XML + draw.io CLI</td>
+<td align="center">✅ 138</td>
+</tr>
+<tr>
 <td align="center" colspan="4"><strong>Total</strong></td>
-<td align="center"><strong>✅ 1,320</strong></td>
+<td align="center"><strong>✅ 1,458</strong></td>
 </tr>
 </table>
 
-> **100% pass rate** across all 1,320 tests — 917 unit tests + 403 end-to-end tests.
+> **100% pass rate** across all 1,458 tests — 1,033 unit tests + 425 end-to-end tests.
 
 ---
 
@@ -367,8 +375,9 @@ obs-studio    153 passed  ✅   (116 unit + 37 e2e)
 kdenlive      155 passed  ✅   (111 unit + 44 e2e)
 shotcut       154 passed  ✅   (110 unit + 44 e2e)
 zoom           22 passed  ✅   (22 unit + 0 e2e)
+drawio        138 passed  ✅   (116 unit + 22 e2e)
 ──────────────────────────────────────────────────────────────────────────────
-TOTAL        1,320 passed  ✅   100% pass rate
+TOTAL        1,458 passed  ✅   100% pass rate
 ```
 
 ---
@@ -410,7 +419,7 @@ cli-anything/
 │   ├── repl_skin.py                      # Unified REPL interface
 │   ├── commands/                         # Plugin command definitions
 │   │   ├── cli-anything.md               # Main build command
-│   │   ├── build.md                      # Phase-by-phase control
+│   │   ├── refine.md                     # Expand existing harness coverage
 │   │   ├── test.md                       # Test runner
 │   │   └── validate.md                   # Standards validation
 │   └── scripts/
@@ -424,7 +433,8 @@ cli-anything/
 ├── 📹 obs-studio/agent-harness/         # OBS Studio CLI (153 tests)
 ├── 🎞️ kdenlive/agent-harness/           # Kdenlive CLI (155 tests)
 ├── 🎬 shotcut/agent-harness/            # Shotcut CLI (154 tests)
-└── 📞 zoom/agent-harness/              # Zoom CLI (22 tests)
+├── 📞 zoom/agent-harness/               # Zoom CLI (22 tests)
+└── 📐 drawio/agent-harness/             # Draw.io CLI (138 tests)
 ```
 
 Each `agent-harness/` contains an installable Python package under `cli_anything.<software>/` with Click CLI, core modules, utils (including `repl_skin.py` and backend wrapper), and comprehensive tests.
@@ -622,7 +632,6 @@ Each generated harness also includes:
 
 If CLI-Anything helps make your software Agent-native, give us a star! ⭐
 
-<!-- Uncomment when published:
 <div align="center">
   <a href="https://star-history.com/#HKUDS/CLI-Anything&Date">
     <picture>
@@ -632,7 +641,6 @@ If CLI-Anything helps make your software Agent-native, give us a star! ⭐
     </picture>
   </a>
 </div>
--->
 
 ---
 
@@ -646,7 +654,7 @@ MIT License — free to use, modify, and distribute.
 
 **CLI-Anything** — *Make any software with a codebase Agent-native.*
 
-<sub>A methodology for the age of AI agents | 9 professional software demos | 1,320 passing tests</sub>
+<sub>A methodology for the age of AI agents | 10 professional software demos | 1,458 passing tests</sub>
 
 <br>
 
