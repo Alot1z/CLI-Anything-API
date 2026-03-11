@@ -1,0 +1,21 @@
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "cli-anything-universal"
+version = "0.1.0"
+description = "Universal tool generation extension for CLI-Anything"
+requires-python = ">=3.10"
+dependencies = [
+  "typer>=0.12",
+  "PyYAML>=6.0",
+]
+
+[project.scripts]
+cli-anything-universal = "cli_anything.universal.main:run"
+
+[tool.setuptools.packages.find]
+where = ["."]
+include = ["cli_anything*"]
+namespaces = true
